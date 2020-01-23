@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-require('body-parser-csv')(bodyParser);
 const graphqlHTTP = require('express-graphql');
 const { schema, root } = require('./schema')
 const report = require('./routes/report');
@@ -17,15 +16,6 @@ app.use(
 		graphiql: true,
 	})
 );
-	
-app.use(bodyParser.csv({
-	csvParseOptions: {
-		fastcsvParams: {
-			headers: true,
-			trim: true,
-		}
-	}
-}));
 
 const port = 3002;
 app.listen(port, () => console.warn(`listening on ${port}`));
