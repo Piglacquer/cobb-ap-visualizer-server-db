@@ -12,16 +12,8 @@ router.use(bodyParser.csv({
 	}
 }));
 
-const getBoost = (data) => {
-	return data.reduce((acc, current, i) => {
-		acc.push({time: current['Time (sec)'], boost: current['Boost (psi)']})
-		return acc;
-	}, [])
-};
-
 router.post('/', (req, res) => {
-	const boost = getBoost(req.body);
-	res.send(boost);
+	res.send(req.body);
 });
 
 module.exports = router;
